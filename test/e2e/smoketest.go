@@ -20,7 +20,7 @@ import (
 
 // AllInOneSmokeTest is for the all-in-one image, where query and collector use the same pod
 func AllInOneSmokeTest(jaegerInstanceName string) {
-	allInOneImageName := "all-in-one"
+	allInOneImageName := "quay.io/maistra/jaeger-all-in-one-rhel7:1.17.6-ibm"
 	ports := []string{"0:16686", "0:14268"}
 	portForw, closeChan := CreatePortForward(namespace, jaegerInstanceName, allInOneImageName, ports, fw.KubeConfig)
 	defer portForw.Close()
