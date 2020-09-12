@@ -18,12 +18,12 @@ spec:
     spec:
       containers:
         - name: example-app
-          image: jaegertracing/vertx-create-span:operator-e2e-tests
+          image: quay.io/maistra/jaeger-vertx-create-span:0.0-ibm-p
           ports:
             - containerPort: 8080
               protocol: TCP
         - name: jaeger-agent
-          image: jaegertracing/jaeger-agent:1.17.0  # The agent version should match the operator version
+          image: quay.io/maistra/jaeger-agent-rhel7:1.17.6-ibm  # The agent version should match the operator version
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5775
