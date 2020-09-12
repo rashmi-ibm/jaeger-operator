@@ -160,7 +160,7 @@ func getVertxDefinition(deploymentName string, annotations map[string]string) *a
 				},
 				Spec: corev1.PodSpec{
 					Containers: []corev1.Container{{
-						Image: "jaegertracing/vertx-create-span:operator-e2e-tests",
+						Image: "quay.io/maistra/jaeger-vertx-create-span:0.0-ibm-p",
 						Name:  deploymentName,
 						Ports: []corev1.ContainerPort{
 							{
