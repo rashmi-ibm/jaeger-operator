@@ -15,7 +15,7 @@ spec:
       serviceAccountName: jaeger-operator
       containers:
       - name: jaeger-operator
-        image: jaegertracing/jaeger-operator:1.19.0
+        image: quay.io/maistra/jaeger-rhel7-operator:1.17.6-ibm
         ports:
         - containerPort: 8383
           name: http-metrics
