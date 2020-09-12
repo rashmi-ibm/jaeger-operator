@@ -56,7 +56,7 @@ metadata:
 spec:
   strategy: allInOne
   allInOne:
-    image: jaegertracing/all-in-one:1.13
+    image: quay.io/maistra/jaeger-all-in-one-rhel7:1.17.6-ibm
 `
 	name := "my-jaeger"
 
