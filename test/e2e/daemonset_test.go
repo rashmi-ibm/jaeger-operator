@@ -171,7 +171,7 @@ func getVertxDeployment(namespace string, selector map[string]string) *appsv1.De
 				},
 				Spec: corev1.PodSpec{
 					Containers: []corev1.Container{{
-						Image: "jaegertracing/vertx-create-span:operator-e2e-tests",
+						Image: "quay.io/maistra/jaeger-vertx-create-span:0.0-ibm-p",
 						Name:  "vertx-create-span",
 						Env: []corev1.EnvVar{
 							corev1.EnvVar{
@@ -228,7 +228,7 @@ func jaegerAgentAsDaemonsetDefinition(namespace string, name string) *v1.Jaeger 
 			Strategy: v1.DeploymentStrategyAllInOne,
 			AllInOne: v1.JaegerAllInOneSpec{},
 			Agent: v1.JaegerAgentSpec{
-				Image:    "jaegertracing/jaeger-agent:latest", // Remove once Jaeger 1.20.0 or 1.19.3 is used
+				Image:    "quay.io/maistra/jaeger-agent-rhel7:1.17.6-ibm", // Remove once Jaeger 1.20.0 or 1.19.3 is used
 				Strategy: "DaemonSet",
 				Options: v1.NewOptions(map[string]interface{}{
 					"log-level": "debug",
