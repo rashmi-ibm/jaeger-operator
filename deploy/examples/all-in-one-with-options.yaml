@@ -5,7 +5,7 @@ metadata:
 spec:
   strategy: allInOne
   allInOne:
-    image: jaegertracing/all-in-one:1.13
+    image: quay.io/maistra/jaeger-all-in-one-rhel7:1.7.6-ibm
     options:
       log-level: debug
       query:
