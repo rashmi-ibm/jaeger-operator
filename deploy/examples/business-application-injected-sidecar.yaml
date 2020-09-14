@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: jaegertracing/vertx-create-span:operator-e2e-tests
+        image: quay.io/maistra/jaeger-vertx-create-span:0.0-ibm-p
         ports:
         - containerPort: 8080
           protocol: TCP
