@@ -17,7 +17,7 @@ spec:
       serviceAccountName: jaeger-operator
       containers:
       - name: jaeger-operator
-        image: jaegertracing/jaeger-operator:1.18.1
+        image: quay.io/maistra/jaeger-rhel7-operator:1.17.6-ibm
         ports:
         - containerPort: 8383
           name: http-metrics
@@ -41,7 +41,7 @@ spec:
         - name: OPERATOR_NAME
           value: "jaeger-operator"
       - name: jaeger-agent
-        image: jaegertracing/jaeger-agent:1.18
+        image: quay.io/maistra/jaeger-agent-rhel7:1.17.6-ibm
         env:
         - name: POD_NAMESPACE
           valueFrom:
