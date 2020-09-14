@@ -25,7 +25,7 @@ spec:
         - -duration=30m
         - -workers=10
       - name: jaeger-agent
-        image: jaegertracing/jaeger-agent:1.17
+        image: quay.io/maistra/jaeger-agent-rhel7:1.17.6-ibm
         args:
         - --reporter.grpc.host-port=dns:///simple-prod-collector-headless.default:14250
         env:
