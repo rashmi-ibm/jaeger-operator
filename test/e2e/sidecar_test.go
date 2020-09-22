@@ -71,7 +71,7 @@ func (suite *SidecarTestSuite) TestSidecar() {
 
 	firstJaegerInstanceName := "agent-as-sidecar"
 	firstJaegerInstance := createJaegerAgentAsSidecarInstance(firstJaegerInstanceName, namespace, testOtelAgent, testOtelAllInOne)
-	//defer undeployJaegerInstance(firstJaegerInstance)
+	defer undeployJaegerInstance(firstJaegerInstance)
 
 	verifyAllInOneImage(firstJaegerInstanceName, namespace, testOtelAllInOne)
 
