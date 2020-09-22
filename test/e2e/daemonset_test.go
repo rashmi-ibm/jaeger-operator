@@ -172,7 +172,6 @@ func getVertxDeployment(namespace string, selector map[string]string) *appsv1.De
 				Spec: corev1.PodSpec{
 					Containers: []corev1.Container{{
 						Image: "quay.io/maistra/jaeger-vertx-create-span:0.0-ibm-p",
-						ImagePullPolicy: "Always",
 						Name:  "vertx-create-span",
 						Env: []corev1.EnvVar{
 							corev1.EnvVar{
