@@ -18,7 +18,7 @@ import (
 )
 
 func init() {
-	viper.SetDefault("jaeger-all-in-one-image", "jaegertracing/all-in-one")
+	viper.SetDefault("jaeger-all-in-one-image", "quay.io/maistra/jaeger-all-in-one-rhel7:1.17.6-ibm")
 }
 
 func TestDefaultAllInOneImage(t *testing.T) {
