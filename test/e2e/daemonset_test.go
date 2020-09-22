@@ -196,7 +196,7 @@ func getVertxDeployment(namespace string, selector map[string]string) *appsv1.De
 									Port: intstr.FromInt(8080),
 								},
 							},
-							InitialDelaySeconds: 1,
+							InitialDelaySeconds: 10,
 							TimeoutSeconds:      10,
 							PeriodSeconds:       60,
 						},
