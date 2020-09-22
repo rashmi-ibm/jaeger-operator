@@ -71,7 +71,7 @@ func (suite *SidecarTestSuite) TestSidecar() {
 
 	firstJaegerInstanceName := "agent-as-sidecar"
 	firstJaegerInstance := createJaegerAgentAsSidecarInstance(firstJaegerInstanceName, namespace, testOtelAgent, testOtelAllInOne)
-	defer undeployJaegerInstance(firstJaegerInstance)
+	//defer undeployJaegerInstance(firstJaegerInstance)
 
 	verifyAllInOneImage(firstJaegerInstanceName, namespace, testOtelAllInOne)
 
@@ -161,6 +161,7 @@ func getVertxDefinition(deploymentName string, annotations map[string]string) *a
 				Spec: corev1.PodSpec{
 					Containers: []corev1.Container{{
 						Image: "quay.io/maistra/jaeger-vertx-create-span:0.0-ibm-p",
+						ImagePullPolicy: "Always",
 						Name:  deploymentName,
 						Ports: []corev1.ContainerPort{
 							{
@@ -174,7 +175,9 @@ func getVertxDefinition(deploymentName string, annotations map[string]string) *a
 									Port: intstr.FromInt(8080),
 								},
 							},
-							InitialDelaySeconds: 1,
+							InitialDelaySeconds: 10,
+							TimeoutSeconds:      10,
+							PeriodSeconds:       60,
 						},
 						LivenessProbe: &corev1.Probe{
 							Handler: corev1.Handler{
@@ -183,7 +186,9 @@ func getVertxDefinition(deploymentName string, annotations map[string]string) *a
 									Port: intstr.FromInt(8080),
 								},
 							},
-							InitialDelaySeconds: 1,
+							InitialDelaySeconds: 10,
+							TimeoutSeconds:      10,
+							PeriodSeconds:       60,
 						},
 					}},
 				},
