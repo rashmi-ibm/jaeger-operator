@@ -102,7 +102,7 @@ func (suite *DaemonSetTestSuite) TestDaemonSet() {
 		err = fw.Client.Create(goctx.TODO(), j, cleanupOptions)
 		require.NoError(t, err, "Error deploying jaeger")
 	}
-	defer undeployJaegerInstance(j)
+	//defer undeployJaegerInstance(j)
 
 	err = WaitForDaemonSet(t, fw.KubeClient, namespace, "agent-as-daemonset-agent-daemonset", retryInterval, timeout)
 	require.NoError(t, err, "Error waiting for daemonset to startup")
@@ -172,6 +172,7 @@ func getVertxDeployment(namespace string, selector map[string]string) *appsv1.De
 				Spec: corev1.PodSpec{
 					Containers: []corev1.Container{{
 						Image: "quay.io/maistra/jaeger-vertx-create-span:0.0-ibm-p",
+						ImagePullPolicy: "Always",
 						Name:  "vertx-create-span",
 						Env: []corev1.EnvVar{
 							corev1.EnvVar{
@@ -196,6 +197,8 @@ func getVertxDeployment(namespace string, selector map[string]string) *appsv1.De
 								},
 							},
 							InitialDelaySeconds: 1,
+							TimeoutSeconds:      10,
+							PeriodSeconds:       60,
 						},
 						LivenessProbe: &corev1.Probe{
 							Handler: corev1.Handler{
@@ -204,7 +207,9 @@ func getVertxDeployment(namespace string, selector map[string]string) *appsv1.De
 									Port: intstr.FromInt(8080),
 								},
 							},
-							InitialDelaySeconds: 1,
+							InitialDelaySeconds: 10,
+							TimeoutSeconds:      10,
+							PeriodSeconds:       60,
 						},
 					}},
 				},
