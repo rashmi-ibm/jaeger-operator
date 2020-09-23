@@ -63,7 +63,7 @@ func (suite *SidecarNamespaceTestSuite) TestSidecarNamespace() {
 
 	jaegerInstanceName := "agent-as-sidecar-namespace"
 	j := createJaegerAgentAsSidecarInstance(jaegerInstanceName, namespace, testOtelAgent, testOtelAllInOne)
-	//defer undeployJaegerInstance(j)
+	defer undeployJaegerInstance(j)
 
 	dep := getVertxDefinition(namespace, map[string]string{})
 	err := fw.Client.Create(goctx.TODO(), dep, cleanupOptions)
